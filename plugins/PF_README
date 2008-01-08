@@ -1,0 +1,17 @@
+To use these plugins, you will need to do three things:
+
+1. Add the following two lines to your PF config file (usually /etc/pf.conf):
+
+table <denyhosts> persist file "/var/db/denyhosts"
+block drop in log quick from <denyhosts> to any
+
+This configuration will will cause PF to silently drop any connection coming
+from a host that DenyHosts has identified as an offender.
+
+2. Create the empty persistence file:
+
+touch /var/db/denyhosts
+
+3. Add the pf_add.py to denyhosts.cfg in the PLUGIN_DENY entry and
+pf_remove.py as the PLUGIN_PURGE entry. You will need to make sure these
+plugin scripts are executable and that the path to python is correct.
