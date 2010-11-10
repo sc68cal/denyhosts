@@ -331,6 +331,9 @@ allowed based on your %s file"""  % (self.__prefs.get("HOSTS_DENY"),
                                           output))
             fp.write("%s\n" % output)
 
+        plugin_deny = self.__prefs.get('PLUGIN_DENY')
+        if plugin_deny: plugin.execute(plugin_deny, new_hosts)
+
         if fp != sys.stdout:
             fp.close()
 
